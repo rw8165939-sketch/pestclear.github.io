@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PestGuard Pro - Advanced Pest Control Services in India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .form-group {
+            margin: 1rem 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .dashboard {
+            display: none;
+            padding: 2rem;
+            background: white;
+            margin: 2rem;
+            border-radius: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .chat-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-box {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .chat-messages {
+            height: 280px;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .chat-input {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .chat-input button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            color: white;
+            z-index: 1001;
+            display: none;
+        }
+
+        .notification.success {
+            background: var(--secondary);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="glass fixed w-full top-0 z-50 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-bug text-2xl text-white"></i>
+                <h1 class="text-xl font-bold text-white">PestGuard Pro</h1>
+            </div>
+            <div class="flex space-x-4">
+                <button id="loginBtn" class="btn btn-primary">Login</button>
+                <button id="registerBtn" class="btn btn-secondary">Register</button>
+                <button id="logoutBtn" class="btn btn-danger" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section mt-16">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e097f61-f2b1-4c3c-9f37-548ea355bb2f.png" alt="Professional pest control technician in protective gear spraying treatment in modern home interior with safety equipment and professional tools" class="absolute inset-0 w-full h-full object-cover" style="z-index: -1;">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bold mb-4">Professional Pest Control Services</h2>
+            <p class="text-xl mb-8">Protecting your home and business with advanced pest management solutions</p>
+            <button id="bookServiceBtn" class="btn btn-primary text-lg">Book Service Now</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="container mx-auto px-4 py-8">
+        <!-- Services Section -->
+        <section class="services-section mb-12">
+            <h3 class="text-3xl font-bold text-center text-white mb-8">Our Services</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="service-card">
+                    <div class="text-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e58f6b6-eed7-4d22-bf38-1ac8bb514de3.png" alt="Residential pest control service showing family home with pest control professional and safety equipment" class="w-full h-40 object-cover rounded-lg mb-4">
+                        <i class="fas fa-home text-4xl mb-4"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Residential Pest Control</h4>
+                    <p class="mb-4">Complete home protection against ants, roaches, spiders, and more.</p>
+                    <div class="text-2xl font-bold mb-4">$99/month</div>
+                    <button class="btn btn-secondary w-full book-service" data-service="Residential">Book Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="text-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ddc3d6e0-39f8-4b56-9afa-4d50f69887c0.png" alt="Commercial pest control in office building with professional equipment and business environment safety protocols" class="w-full h-40 object-cover rounded-lg mb-4">
+                        <i class="fas fa-building text-4xl mb-4"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Commercial Pest Control</h4>
+                    <p class="mb-4">Professional pest management for businesses and commercial properties.</p>
+                    <div class="text-2xl font-bold mb-4">₹15,999/month</div>
+                    <button class="btn btn-secondary w-full book-service" data-service="Commercial">Book Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="text-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2c635576-2fbb-4f32-a885-57c6922c0772.png" alt="Emergency pest control response team with rapid deployment vehicle and 24/7 service equipment" class="w-full h-40 object-cover rounded-lg mb-4">
+                        <i class="fas fa-exclamation-triangle text-4xl mb-4"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Emergency Services</h4>
+                    <p class="mb-4">24/7 emergency pest control response for urgent situations.</p>
+                    <div class="text-2xl font-bold mb-4">$299/visit</div>
+                    <button class="btn btn-secondary w-full book-service" data-service="Emergency">Book Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="text-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1e90e4b0-a4d0-4bc9-8833-25ce40bd0627.png" alt="Termite inspection specialist examining wooden structures with professional detection equipment and inspection tools" class="w-full h-40 object-cover rounded-lg mb-4">
+                        <i class="fas fa-search text-4xl mb-4"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Termite Inspection</h4>
+                    <p class="mb-4">Comprehensive termite detection and treatment services.</p>
+                    <div class="text-2xl font-bold mb-4">₹11,999/inspection</div>
+                    <button class="btn btn-secondary w-full book-service" data-service="Termite">Book Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="text-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d4a6841c-f949-457e-a103-9a93417c3590.png" alt="Rodent control specialist setting up humane traps and monitoring systems in residential basement area" class="w-full h-40 object-cover rounded-lg mb-4">
+                        <i class="fas fa-mouse text-4xl mb-4"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Rodent Control</h4>
+                    <p class="mb-4">Effective rodent elimination and prevention programs.</p>
+                    <div class="text-2xl font-bold mb-4">$129/treatment</div>
+                    <button class="btn btn-secondary w-full book-service" data-service="Rodent">Book Now</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="text-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/16b6349d-2f5d-4b42-8eb2-e30cf76c0b17.png" alt="Bed bug treatment specialist with heat treatment equipment and inspection tools in bedroom environment" class="w-full h-40 object-cover rounded-lg mb-4">
+                        <i class="fas fa-bed text-4xl mb-4"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Bed Bug Treatment</h4>
+                    <p class="mb-4">Advanced heat treatment and elimination of bed bug infestations.</p>
+                    <div class="text-2xl font-bold mb-4">₹32,999/treatment</div>
+                    <button class="btn btn-secondary w-full book-service" data-service="Bed Bug">Book Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section mb-12">
+            <div class="card">
+                <h3 class="text-3xl font-bold text-center mb-8">Why Choose PestGuard Pro?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Licensed & Insured</h4>
+                        <p>Fully licensed professionals with comprehensive insurance coverage.</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-leaf text-4xl text-green-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Eco-Friendly</h4>
+                        <p>Safe, environmentally responsible pest control methods.</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-clock text-4xl text-yellow-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">24/7 Support</h4>
+                        <p>Round-the-clock customer support and emergency services.</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-medal text-4xl text-purple-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Satisfaction Guarantee</h4>
+                        <p>100% satisfaction guarantee or your money back.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Customer Dashboard -->
+    <div id="customerDashboard" class="dashboard">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold">Customer Dashboard</h2>
+            <button id="newBookingBtn" class="btn btn-primary">New Booking</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Active Services</h3>
+                <div class="text-3xl font-bold" id="activeServices">0</div>
+            </div>
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Total Bookings</h3>
+                <div class="text-3xl font-bold" id="totalBookings">0</div>
+            </div>
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Money Saved</h3>
+                <div class="text-3xl font-bold" id="moneySaved">₹0</div>
+            </div>
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Next Service</h3>
+                <div class="text-lg font-bold" id="nextService">Not Scheduled</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4">Recent Bookings</h3>
+                <div id="recentBookings">
+                    <p class="text-gray-500">No bookings yet. Book your first service!</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4">Service History</h3>
+                <div id="serviceHistory">
+                    <p class="text-gray-500">No service history available.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Owner Dashboard -->
+    <div id="ownerDashboard" class="dashboard">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold">Owner Dashboard</h2>
+            <div class="flex space-x-2">
+                <button id="addTechnicianBtn" class="btn btn-secondary">Add Technician</button>
+                <button id="generateReportBtn" class="btn btn-primary">Generate Report</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Today's Revenue</h3>
+                <div class="text-3xl font-bold" id="todayRevenue">$0</div>
+            </div>
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Active Customers</h3>
+                <div class="text-3xl font-bold" id="activeCustomers">0</div>
+            </div>
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Pending Services</h3>
+                <div class="text-3xl font-bold" id="pendingServices">0</div>
+            </div>
+            <div class="stat-card">
+                <h3 class="text-lg font-semibold">Technicians</h3>
+                <div class="text-3xl font-bold" id="totalTechnicians">5</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4">Today's Schedule</h3>
+                <div id="todaySchedule">
+                    <div class="space-y-2">
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <div class="font-semibold">9:00 AM - Residential Service</div>
+                            <div class="text-gray-600">Rajesh Kumar - Sector 15, Gurgaon</div>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-2">
+                            <div class="font-semibold">11:30 AM - Commercial Inspection</div>
+                            <div class="text-gray-600">ABC Corp - 456 Business Ave</div>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                            <div class="font-semibold">2:00 PM - Emergency Call</div>
+                            <div class="text-gray-600">Priya Sharma - DLF Phase 2, Gurgaon</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4">Customer Reviews</h3>
+                <div id="customerReviews" class="space-y-4">
+                    <div class="border-b pb-2">
+                        <div class="flex items-center space-x-2 mb-1">
+                            <div class="text-yellow-500">★★★★★</div>
+                            <span class="font-semibold">Mike Wilson</span>
+                        </div>
+                        <p class="text-gray-600">"Excellent service! Very professional and effective."</p>
+                    </div>
+                    <div class="border-b pb-2">
+                        <div class="flex items-center space-x-2 mb-1">
+                            <div class="text-yellow-500">★★★★☆</div>
+                            <span class="font-semibold">Sneha Reddy</span>
+                        </div>
+                        <p class="text-gray-600">"Quick response time and friendly technicians."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="loginModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="userType">Login as:</label>
+                    <select id="userType" required>
+                        <option value="">Select user type</option>
+                        <option value="customer">Customer</option>
+                        <option value="owner">Business Owner</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">
+                    <span id="loginLoading" class="loading" style="display: none;"></span>
+                    Login
+                </button>
+            </form>
+            <p class="text-center mt-4">
+                Don't have an account? 
+                <a href="#" id="switchToRegister" class="text-blue-600 underline">Register here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="registerModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPhone">Phone:</label>
+                    <input type="tel" id="registerPhone" placeholder="+91 98765 43210" pattern="[+]?[91]?[0-9]{10,13}" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerState">State:</label>
+                    <select id="registerState" required>
+                        <option value="">Select your state</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="registerCity">City:</label>
+                    <input type="text" id="registerCity" placeholder="Enter your city" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerUserType">Register as:</label>
+                    <select id="registerUserType" required>
+                        <option value="">Select user type</option>
+                        <option value="customer">Customer</option>
+                        <option value="owner">Business Owner</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">
+                    <span id="registerLoading" class="loading" style="display: none;"></span>
+                    Register
+                </button>
+            </form>
+            <p class="text-center mt-4">
+                Already have an account? 
+                <a href="#" id="switchToLogin" class="text-blue-600 underline">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="bookingModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Book Service</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="serviceType">Service Type:</label>
+                    <select id="serviceType" required>
+                        <option value="">Select a service</option>
+                        <option value="Residential">Residential Pest Control - $99/month</option>
+                        <option value="Commercial">Commercial Pest Control - $199/month</option>
+                        <option value="Emergency">Emergency Services - $299/visit</option>
+                        <option value="Termite">Termite Inspection - $149/inspection</option>
+                        <option value="Rodent">Rodent Control - $129/treatment</option>
+                        <option value="Bed Bug">Bed Bug Treatment - $399/treatment</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingDate">Preferred Date:</label>
+                    <input type="date" id="bookingDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingTime">Preferred Time:</label>
+                    <select id="bookingTime" required>
+                        <option value="">Select time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Service Address:</label>
+                    <textarea id="address" rows="3" required placeholder="Enter full address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pestType">Type of Pest Problem:</label>
+                    <select id="pestType" required>
+                        <option value="">Select pest type</option>
+                        <option value="Ants">Ants</option>
+                        <option value="Cockroaches">Cockroaches</option>
+                        <option value="Spiders">Spiders</option>
+                        <option value="Termites">Termites</option>
+                        <option value="Rodents">Rodents</option>
+                        <option value="Bed Bugs">Bed Bugs</option>
+                        <option value="Wasps">Wasps/Hornets</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Additional Details:</label>
+                    <textarea id="description" rows="3" placeholder="Describe the pest problem in detail"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">Urgency Level:</label>
+                    <select id="urgency" required>
+                        <option value="">Select urgency</option>
+                        <option value="Low">Low - Schedule within a week</option>
+                        <option value="Medium">Medium - Schedule within 2-3 days</option>
+                        <option value="High">High - Schedule within 24 hours</option>
+                        <option value="Emergency">Emergency - Same day service</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">
+                    <span id="bookingLoading" class="loading" style="display: none;"></span>
+                    Book Service
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="paymentModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Payment Details</h2>
+            <div id="bookingSummary" class="card mb-4">
+                <!-- Booking summary will be populated here -->
+            </div>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date:</label>
+                        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cardName">Name on Card:</label>
+                    <input type="text" id="cardName" required>
+                </div>
+                <div class="form-group">
+                    <label for="billingAddress">Billing Address:</label>
+                    <textarea id="billingAddress" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">
+                    <span id="paymentLoading" class="loading" style="display: none;"></span>
+                    Complete Payment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Tracking Modal -->
+    <div id="trackingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="trackingModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Track Your Service</h2>
+            <div id="trackingInfo">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                        <div>
+                            <div class="font-semibold">Service Booked</div>
+                            <div class="text-gray-600">Your service has been scheduled</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                        <div>
+                            <div class="font-semibold">Technician Assigned</div>
+                            <div class="text-gray-600">John Doe will handle your service</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-4 h-4 bg-yellow-500 rounded-full"></div>
+                        <div>
+                            <div class="font-semibold">En Route</div>
+                            <div class="text-gray-600">Technician is on the way</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-4 h-4 bg-gray-300 rounded-full"></div>
+                        <div>
+                            <div class="font-semibold text-gray-500">Service Complete</div>
+                            <div class="text-gray-400">Service will be marked complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="reviewModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Leave a Review</h2>
+            <form id="reviewForm">
+                <div class="form-group">
+                    <label>Rating:</label>
+                    <div class="flex space-x-2">
+                        <button type="button" class="star-rating text-2xl" data-rating="1">☆</button>
+                        <button type="button" class="star-rating text-2xl" data-rating="2">☆</button>
+                        <button type="button" class="star-rating text-2xl" data-rating="3">☆</button>
+                        <button type="button" class="star-rating text-2xl" data-rating="4">☆</button>
+                        <button type="button" class="star-rating text-2xl" data-rating="5">☆</button>
+                    </div>
+                    <input type="hidden" id="rating" required>
+                </div>
+                <div class="form-group">
+                    <label for="reviewText">Your Review:</label>
+                    <textarea id="reviewText" rows="4" required placeholder="Share your experience with our service"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recommendService">Would you recommend our service?</label>
+                    <select id="recommendService" required>
+                        <option value="">Select option</option>
+                        <option value="yes">Yes, definitely</option>
+                        <option value="maybe">Maybe</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div id="chatBox" class="chat-box">
+            <div class="chat-header">
+                <h4>Customer Support</h4>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="mb-2 p-2 bg-gray-100 rounded">
+                    <strong>Support:</strong> Hello! How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button id="chatToggle" class="chat-button">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- Verification Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="verificationModal">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Verify Your Account</h2>
+            <form id="verificationForm">
+                <div class="form-group">
+                    <label for="emailCode">Email Verification Code:</label>
+                    <input type="text" id="emailCode" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneOtp">SMS OTP:</label>
+                    <input type="text" id="phoneOtp" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">
+                    <span id="verifyLoading" class="loading" style="display: none;"></span>
+                    Verify Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // Application State
+        const appState = {
+            currentUser: null,
+            bookings: JSON.parse(localStorage.getItem('pestControlBookings')) || [],
+            users: JSON.parse(localStorage.getItem('pestControlUsers')) || [],
+            reviews: JSON.parse(localStorage.getItem('pestControlReviews')) || [],
+            verificationTokens: JSON.parse(localStorage.getItem('verificationTokens')) || [],
+            verifiedEmails: JSON.parse(localStorage.getItem('verifiedEmails')) || [],
+            verifiedPhones: JSON.parse(localStorage.getItem('verifiedPhones')) || []
+        };
+
+        // Utility Functions
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validatePhone(phone) {
+            const indianPhoneRegex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+            return indianPhoneRegex.test(phone.replace(/\s/g, ''));
+        }
+
+        function formatCardNumber(value) {
+            return value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+        }
+
+        function formatExpiryDate(value) {
+            return value.replace(/\D/g, '').replace(/(\d{2})(\d)/, '$1/$2');
+        }
+
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+
+        function generateOTP() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+
+        function hashPassword(password) {
+            // In a real app, this would use proper hashing like bcrypt
+            return btoa(password);
+        }
+
+        function sendVerificationEmail(email, token) {
+            // Simulate sending verification email
+            console.log(`Sent verification email to ${email} with token: ${token}`);
+        }
+
+        function sendVerificationSMS(phone, otp) {
+            // Simulate sending SMS
+            console.log(`Sent SMS to ${phone} with OTP: ${otp}`);
+        }
+
+        // Authentication Functions
+        function login(email, password, userType) {
+            const user = appState.users.find(u => 
+                u.email === email && 
+                u.password === password && 
+                u.userType === userType
+            );
+
+            if (user) {
+                if (!user.isEmailVerified || !user.isPhoneVerified) {
+                    showModal('verificationModal');
+                    const verifyInfo = appState.verificationTokens.find(v => v.email === user.email);
+                    showNotification('Please verify your email and phone number to continue', 'warning');
+                    return false;
+                }
+                appState.currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                return true;
+            }
+            return false;
+        }
+
+        function register(userData) {
+            // Check if user already exists
+            const existingUser = appState.users.find(u => u.email === userData.email);
+            if (existingUser) {
+                throw new Error('User with this email already exists');
+            }
+
+            const verificationToken = generateId();
+            const otp = generateOTP();
+            
+            const newUser = {
+                id: generateId(),
+                ...userData,
+                password: hashPassword(userData.password),
+                isEmailVerified: false,
+                isPhoneVerified: false,
+                createdAt: new Date().toISOString()
+            };
+
+            appState.users.push(newUser);
+            appState.verificationTokens.push({
+                email: userData.email,
+                emailToken: verificationToken,
+                phoneOtp: otp,
+                expiresAt: Date.now() + 3600000 // 1 hour expiry
+            });
+            
+            localStorage.setItem('pestControlUsers', JSON.stringify(appState.users));
+            localStorage.setItem('verificationTokens', JSON.stringify(appState.verificationTokens));
+
+            sendVerificationEmail(userData.email, verificationToken);
+            sendVerificationSMS(userData.phone, otp);
+
+            showNotification('Verification codes sent! Please verify your email and phone number.');
+            return newUser;
+        }
+
+        function logout() {
+            appState.currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateUIForLoggedOutUser();
+        }
+
+        function checkServiceNotifications() {
+            // Check for expiring contracts
+            const expiringSoon = appState.bookings.filter(b => 
+                b.userId === appState.currentUser.id && 
+                b.expiresAt && 
+                (b.expiresAt - Date.now()) < 604800000 &&  // 7 days
+                (b.expiresAt - Date.now()) > 0
+            );
+            
+            if (expiringSoon.length > 0) {
+                showNotification(`You have ${expiringSoon.length} service(s) expiring soon!`, 'warning');
+            }
+
+            // Check for completed services
+            const completedServices = appState.bookings.filter(b => 
+                b.userId === appState.currentUser.id && 
+                b.status === 'completed' && 
+                !b.notified
+            );
+            
+            completedServices.forEach(service => {
+                showNotification(`Your ${service.serviceType} service has been completed!`, 'success');
+                service.notified = true;
+                localStorage.setItem('pestControlBookings', JSON.stringify(appState.bookings));
+            });
+        }
+
+        function updateUIForLoggedInUser() {
+            document.getElementById('loginBtn').style.display = 'none';
+            document.getElementById('registerBtn').style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'block';
+
+            // Check for notifications
+            checkServiceNotifications();
+
+            if (appState.currentUser.userType === 'customer') {
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('customerDashboard').style.display = 'block';
+                document.getElementById('ownerDashboard').style.display = 'none';
+                updateCustomerDashboard();
+            } else if (appState.currentUser.userType === 'owner') {
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('customerDashboard').style.display = 'none';
+                document.getElementById('ownerDashboard').style.display = 'block';
+                updateOwnerDashboard();
+            }
+        }
+
+        function updateUIForLoggedOutUser() {
+            document.getElementById('loginBtn').style.display = 'block';
+            document.getElementById('registerBtn').style.display = 'block';
+            document.getElementById('logoutBtn').style.display = 'none';
+            
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('customerDashboard').style.display = 'none';
+            document.getElementById('ownerDashboard').style.display = 'none';
+        }
+
+        // Dashboard Functions
+        function updateCustomerDashboard() {
+            const userBookings = appState.bookings.filter(b => b.userId === appState.currentUser.id);
+            const activeServices = userBookings.filter(b => b.status === 'scheduled' || b.status === 'in-progress').length;
+            
+            document.getElementById('activeServices').textContent = activeServices;
+            document.getElementById('totalBookings').textContent = userBookings.length;
+            document.getElementById('moneySaved').textContent = `$${Math.floor(Math.random() * 500) + 100}`;
+            
+            const nextService = userBookings.find(b => b.status === 'scheduled');
+            document.getElementById('nextService').textContent = nextService ? 
+                `${nextService.date} at ${nextService.time}` : 'Not Scheduled';
+
+            // Update recent bookings
+            const recentBookingsHtml = userBookings.slice(-5).map(booking => `
+                <div class="border-b pb-2 mb-2">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <div class="font-semibold">${booking.serviceType}</div>
+                            <div class="text-gray-600">${booking.date} at ${booking.time}</div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 text-xs rounded ${getStatusClass(booking.status)}">${booking.status}</span>
+                            <button class="btn-sm text-blue-600" onclick="trackService('${booking.id}')">Track</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('recentBookings').innerHTML = recentBookingsHtml || 
+                '<p class="text-gray-500">No bookings yet. Book your first service!</p>';
+        }
+
+        function updateOwnerDashboard() {
+            const today = new Date().toISOString().split('T')[0];
+            const todayBookings = appState.bookings.filter(b => b.date === today);
+            
+            document.getElementById('todayRevenue').textContent = `₹${todayBookings.reduce((sum, b) => sum + (b.price || 0), 0)}`;
+            document.getElementById('activeCustomers').textContent = new Set(appState.bookings.map(b => b.userId)).size;
+            document.getElementById('pendingServices').textContent = appState.bookings.filter(b => b.status === 'scheduled').length;
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'scheduled': return 'bg-blue-100 text-blue-800';
+                case 'in-progress': return 'bg-yellow-100 text-yellow-800';
+                case 'completed': return 'bg-green-100 text-green-800';
+                case 'cancelled': return 'bg-red-100 text-red-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Booking Functions
+        function createBooking(bookingData) {
+            const contractLength = bookingData.serviceType === 'Residential' ? 2592000000 :  // 30 days
+                                 bookingData.serviceType === 'Commercial' ? 2592000000 :    // 30 days
+                                 null;  // One-time services
+            
+            const booking = {
+                id: generateId(),
+                userId: appState.currentUser.id,
+                userName: appState.currentUser.name,
+                userEmail: appState.currentUser.email,
+                ...bookingData,
+                status: 'scheduled',
+                createdAt: new Date().toISOString(),
+                expiresAt: contractLength ? Date.now() + contractLength : null,
+                price: getServicePrice(bookingData.serviceType)
+            };
+
+            appState.bookings.push(booking);
+            localStorage.setItem('pestControlBookings', JSON.stringify(appState.bookings));
+            
+            return booking;
+        }
+
+        function getServicePrice(serviceType) {
+            const prices = {
+                'Residential': 7999,
+                'Commercial': 15999,
+                'Emergency': 24999,
+                'Termite': 11999,
+                'Rodent': 10999,
+                'Bed Bug': 32999
+            };
+            return prices[serviceType] || 7999;
+        }
+
+        function trackService(bookingId) {
+            showModal('trackingModal');
+            // Simulate real-time tracking updates
+            setTimeout(() => {
+                const progress = document.querySelector('.progress-fill');
+                if (progress) {
+                    progress.style.width = '80%';
+                }
+            }, 2000);
+        }
+
+        // Chat Functions
+        function initializeChat() {
+            const chatToggle = document.getElementById('chatToggle');
+            const chatBox = document.getElementById('chatBox');
+            const sendMessage = document.getElementById('sendMessage');
+            const chatInput = document.getElementById('chatInput');
+
+            chatToggle.addEventListener('click', () => {
+                chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+            });
+
+            sendMessage.addEventListener('click', sendChatMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendChatMessage();
+                }
+            });
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'mb-2 p-2 bg-blue-100 rounded text-right';
+            userMessage.innerHTML = `<strong>You:</strong> ${message}`;
+            messages.appendChild(userMessage);
+
+            input.value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'mb-2 p-2 bg-gray-100 rounded';
+                botMessage.innerHTML = `<strong>Support:</strong> ${getBotResponse(message)}`;
+                messages.appendChild(botMessage);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const responses = {
+                'hello': 'Hello! How can I assist you with your pest control needs today?',
+                'help': 'I can help you with booking services, tracking appointments, or answering questions about our pest control solutions.',
+                'price': 'Our services range from ₹7,999/month for residential to ₹32,999 for specialized treatments. Would you like specific pricing?',
+                'emergency': 'For emergency pest control, please call our 24/7 hotline or book an emergency service through our app.',
+                'book': 'You can book a service by clicking the "Book Service Now" button or visiting your dashboard.',
+                'track': 'To track your service, please log into your account and check your dashboard for real-time updates.'
+            };
+
+            const lowerMessage = message.toLowerCase();
+            for (const [key, response] of Object.entries(responses)) {
+                if (lowerMessage.includes(key)) {
+                    return response;
+                }
+            }
+
+            return 'Thank you for your message. A support representative will get back to you shortly. Is there anything specific I can help you with right now?';
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for stored user session
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                appState.currentUser = JSON.parse(storedUser);
+                updateUIForLoggedInUser();
+            }
+
+            // Initialize chat
+            initializeChat();
+
+            // Modal close buttons
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', (e) => {
+                    const modalId = e.target.getAttribute('data-modal');
+                    hideModal(modalId);
+                });
+            });
+
+            // Click outside modal to close
+            window.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+
+            // Login button
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                showModal('loginModal');
+            });
+
+            // Register button
+            document.getElementById('registerBtn').addEventListener('click', () => {
+                showModal('registerModal');
+            });
+
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+
+            // Switch between login and register
+            document.getElementById('switchToRegister').addEventListener('click', () => {
+                hideModal('loginModal');
+                showModal('registerModal');
+            });
+
+            document.getElementById('switchToLogin').addEventListener('click', () => {
+                hideModal('registerModal');
+                showModal('loginModal');
+            });
+
+            // Book service buttons
+            document.getElementById('bookServiceBtn').addEventListener('click', () => {
+                if (!appState.currentUser) {
+                    showNotification('Please login to book a service', 'error');
+                    showModal('loginModal');
+                    return;
+                }
+                showModal('bookingModal');
+            });
+
+            document.getElementById('newBookingBtn').addEventListener('click', () => {
+                showModal('bookingModal');
+            });
+
+            document.querySelectorAll('.book-service').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (!appState.currentUser) {
+                        showNotification('Please login to book a service', 'error');
+                        showModal('loginModal');
+                        return;
+                    }
+                    const serviceType = e.target.getAttribute('data-service');
+                    document.getElementById('serviceType').value = serviceType;
+                    showModal('bookingModal');
+                });
+            });
+
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                const userType = document.getElementById('userType').value;
+
+                if (!validateEmail(email)) {
+                    showNotification('Please enter a valid email address', 'error');
+                    return;
+                }
+
+                const loading = document.getElementById('loginLoading');
+                loading.style.display = 'inline-block';
+
+                // Simulate API call
+                setTimeout(() => {
+                    if (login(email, password, userType)) {
+                        hideModal('loginModal');
+                        updateUIForLoggedInUser();
+                        showNotification('Login successful!');
+                        document.getElementById('loginForm').reset();
+                    } else {
+                        showNotification('Invalid credentials. Try email: user@example.com, password: password123', 'error');
+                    }
+                    loading.style.display = 'none';
+                }, 1000);
+            });
+
+            // Register form
+            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const phone = document.getElementById('registerPhone').value;
+                const password = document.getElementById('registerPassword').value;
+                const userType = document.getElementById('registerUserType').value;
+
+                if (!validateEmail(email)) {
+                    showNotification('Please enter a valid email address', 'error');
+                    return;
+                }
+
+                if (!validatePhone(phone)) {
+                    showNotification('Please enter a valid phone number', 'error');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    showNotification('Password must be at least 6 characters long', 'error');
+                    return;
+                }
+
+                const loading = document.getElementById('registerLoading');
+                loading.style.display = 'inline-block';
+
+                try {
+                    // Simulate API call
+                    setTimeout(() => {
+                        register({ name, email, phone, password, userType });
+                        hideModal('registerModal');
+                        updateUIForLoggedInUser();
+                        showNotification('Registration successful!');
+                        document.getElementById('registerForm').reset();
+                        loading.style.display = 'none';
+                    }, 1000);
+                } catch (error) {
+                    showNotification(error.message, 'error');
+                    loading.style.display = 'none';
+                }
+            });
+
+            // Booking form
+            document.getElementById('bookingForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(e.target);
+                const bookingData = {
+                    serviceType: document.getElementById('serviceType').value,
+                    date: document.getElementById('bookingDate').value,
+                    time: document.getElementById('bookingTime').value,
+                    address: document.getElementById('address').value,
+                    pestType: document.getElementById('pestType').value,
+                    description: document.getElementById('description').value,
+                    urgency: document.getElementById('urgency').value
+                };
+
+                // Validate date is not in the past
+                const selectedDate = new Date(bookingData.date);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                if (selectedDate < today) {
+                    showNotification('Please select a future date', 'error');
+                    return;
+                }
+
+                const loading = document.getElementById('bookingLoading');
+                loading.style.display = 'inline-block';
+
+                // Simulate booking process
+                setTimeout(() => {
+                    // Show payment modal with booking summary
+                    const price = getServicePrice(bookingData.serviceType);
+                    document.getElementById('bookingSummary').innerHTML = `
+                        <h3 class="text-lg font-bold mb-2">Booking Summary</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Service:</span>
+                                <span class="font-semibold">${bookingData.serviceType}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Date & Time:</span>
+                                <span class="font-semibold">${bookingData.date} at ${bookingData.time}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Address:</span>
+                                <span class="font-semibold">${bookingData.address}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Pest Type:</span>
+                                <span class="font-semibold">${bookingData.pestType}</span>
+                            </div>
+                            <div class="flex justify-between border-t pt-2">
+                                <span class="font-bold">Total:</span>
+                                <span class="font-bold text-xl">$${price}</span>
+                            </div>
+                        </div>
+                    `;
+
+                    // Store booking data temporarily
+                    window.tempBookingData = bookingData;
+
+                    hideModal('bookingModal');
+                    showModal('paymentModal');
+                    loading.style.display = 'none';
+                }, 1000);
+            });
+
+            // Payment form
+            document.getElementById('paymentForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const loading = document.getElementById('paymentLoading');
+                loading.style.display = 'inline-block';
+
+                // Simulate payment processing
+                setTimeout(() => {
+                    const booking = createBooking(window.tempBookingData);
+                    delete window.tempBookingData;
+
+                    hideModal('paymentModal');
+                    showNotification('Booking confirmed! Payment processed successfully.');
+                    
+                    if (appState.currentUser.userType === 'customer') {
+                        updateCustomerDashboard();
+                    }
+
+                    // Clear forms
+                    document.getElementById('bookingForm').reset();
+                    document.getElementById('paymentForm').reset();
+                    loading.style.display = 'none';
+
+                    // Show tracking modal after a delay
+                    setTimeout(() => {
+                        trackService(booking.id);
+                    }, 2000);
+                }, 2000);
+            });
+
+            // Card number formatting
+            document.getElementById('cardNumber').addEventListener('input', (e) => {
+                e.target.value = formatCardNumber(e.target.value);
+            });
+
+            // Expiry date formatting
+            document.getElementById('expiryDate').addEventListener('input', (e) => {
+                e.target.value = formatExpiryDate(e.target.value);
+            });
+
+            // CVV validation
+            document.getElementById('cvv').addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+
+            // Star rating
+            document.querySelectorAll('.star-rating').forEach(star => {
+                star.addEventListener('click', (e) => {
+                    const rating = e.target.getAttribute('data-rating');
+                    document.getElementById('rating').value = rating;
+                    
+                    // Update star display
+                    document.querySelectorAll('.star-rating').forEach((s, index) => {
+                        if (index < rating) {
+                            s.textContent = '★';
+                            s.style.color = '#fbbf24';
+                        } else {
+                            s.textContent = '☆';
+                            s.style.color = '#d1d5db';
+                        }
+                    });
+                });
+            });
+
+            // Review form
+            document.getElementById('reviewForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const reviewData = {
+                    id: generateId(),
+                    userId: appState.currentUser.id,
+                    userName: appState.currentUser.name,
+                    rating: document.getElementById('rating').value,
+                    text: document.getElementById('reviewText').value,
+                    recommend: document.getElementById('recommendService').value,
+                    createdAt: new Date().toISOString()
+                };
+
+                appState.reviews.push(reviewData);
+                localStorage.setItem('pestControlReviews', JSON.stringify(appState.reviews));
+
+                hideModal('reviewModal');
+                showNotification('Thank you for your review!');
+                document.getElementById('reviewForm').reset();
+
+                // Reset stars
+                document.querySelectorAll('.star-rating').forEach(s => {
+                    s.textContent = '☆';
+                    s.style.color = '#d1d5db';
+                });
+            });
+
+            // Set minimum date for booking
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('bookingDate').setAttribute('min', today);
+        });
+
+        // Add some demo users for testing
+        if (appState.users.length === 0) {
+            appState.users = [
+                {
+                    id: 'demo-customer',
+                    name: 'Rajesh Kumar',
+                    email: 'customer@pestguardpro.com',
+                    phone: '+919876543210',
+                    password: 'PestGuard@123',
+                    userType: 'customer',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'demo-owner',
+                    name: 'Meera Sharma',
+                    email: 'owner@pestguardpro.com', 
+                    phone: '+919876543212',
+                    password: 'PestGuard@456',
+                    userType: 'owner',
+                    createdAt: new Date().toISOString()
+                }
+            ];
+            localStorage.setItem('pestControlUsers', JSON.stringify(appState.users));
+        }
+
+        // Demo data for owner dashboard
+        if (appState.bookings.length === 0) {
+            const demoBookings = [
+                {
+                    id: 'demo-booking-1',
+                    userId: 'demo-customer',
+                    userName: 'Rajesh Kumar',
+                    userEmail: 'user@example.com',
+                    serviceType: 'Residential',
+                    date: new Date().toISOString().split('T')[0],
+                    time: '9:00 AM',
+                    address: 'Flat 201, Building A, Sector 15, Gurgaon, Haryana - 122001',
+                    pestType: 'Ants',
+                    description: 'Ant problem in kitchen',
+                    urgency: 'Medium',
+                    status: 'scheduled',
+                    price: 7999,
+                    createdAt: new Date().toISOString()
+                }
+            ];
+            appState.bookings = demoBookings;
+            localStorage.setItem('pestControlBookings', JSON.stringify(appState.bookings));
+        }
+    </script>
+</body>
+</html>
+
